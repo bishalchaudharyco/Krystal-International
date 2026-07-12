@@ -3,7 +3,6 @@
 // =====================================
 
 
-
 console.log(
     "Krystal International Website Loaded"
 );
@@ -17,44 +16,48 @@ console.log(
 // =====================================
 
 
+const menuBtn = document.querySelector(".menu-btn");
 
-const menuBtn = document.querySelector(
-    ".menu-btn"
-);
-
-
-const navbar = document.querySelector(
-    "#navbar"
-);
+const navbar = document.querySelector("#navbar");
 
 
 
-if(menuBtn){
+if(menuBtn && navbar){
 
 
-menuBtn.addEventListener(
-"click",
-()=>{
+    menuBtn.addEventListener(
+        "click",
+        ()=>{
 
 
-navbar.classList.toggle(
-    "active"
-);
+            navbar.classList.toggle("active");
 
 
-
-menuBtn.classList.toggle(
-    "open"
-);
+            menuBtn.classList.toggle("open");
 
 
+            if(menuBtn.classList.contains("open")){
 
-});
 
+                menuBtn.innerHTML = "✕";
+
+
+            }
+
+            else{
+
+
+                menuBtn.innerHTML = "☰";
+
+
+            }
+
+
+        }
+    );
 
 
 }
-
 
 
 
@@ -67,21 +70,78 @@ menuBtn.classList.toggle(
 // =====================================
 
 
-
-const navLinks =
-document.querySelectorAll(
-"#navbar a"
+const navLinks = document.querySelectorAll(
+    "#navbar a"
 );
 
 
 
 navLinks.forEach(
-(link)=>{
+    link=>{
 
 
-link.addEventListener(
+        link.addEventListener(
+            "click",
+            ()=>{
+
+
+                if(navbar){
+
+
+                    navbar.classList.remove(
+                        "active"
+                    );
+
+
+                }
+
+
+                if(menuBtn){
+
+
+                    menuBtn.classList.remove(
+                        "open"
+                    );
+
+
+                    menuBtn.innerHTML="☰";
+
+
+                }
+
+
+            }
+        );
+
+
+    }
+);
+
+
+
+
+
+
+
+
+
+// =====================================
+// CLOSE MENU WHEN CLICK OUTSIDE
+// =====================================
+
+
+document.addEventListener(
 "click",
-()=>{
+(e)=>{
+
+
+if(
+navbar &&
+menuBtn &&
+!navbar.contains(e.target) &&
+!menuBtn.contains(e.target)
+
+){
 
 
 navbar.classList.remove(
@@ -89,10 +149,58 @@ navbar.classList.remove(
 );
 
 
+menuBtn.classList.remove(
+"open"
+);
+
+
+menuBtn.innerHTML="☰";
+
+
+}
+
+
+
 });
 
 
+
+
+
+
+
+
+
+// =====================================
+// CLOSE MENU ON WINDOW RESIZE
+// =====================================
+
+
+window.addEventListener(
+"resize",
+()=>{
+
+
+if(window.innerWidth > 768){
+
+
+if(navbar){
+
+
+navbar.classList.remove(
+"active"
+);
+
+
+}
+
+
+
+}
+
+
 });
+
 
 
 
@@ -106,10 +214,9 @@ navbar.classList.remove(
 // =====================================
 
 
-
 const header =
 document.querySelector(
-"header"
+".header"
 );
 
 
@@ -119,13 +226,17 @@ window.addEventListener(
 ()=>{
 
 
+if(!header)
+return;
+
+
+
 if(window.scrollY > 50){
 
 
 header.classList.add(
 "scrolled"
 );
-
 
 
 }
@@ -141,7 +252,6 @@ header.classList.remove(
 }
 
 
-
 });
 
 
@@ -155,7 +265,6 @@ header.classList.remove(
 // =====================================
 // AUTO COPYRIGHT YEAR
 // =====================================
-
 
 
 const year =
@@ -188,10 +297,10 @@ copyright.innerHTML =
 
 
 
+
 // =====================================
 // SMOOTH SCROLL
 // =====================================
-
 
 
 document.querySelectorAll(
@@ -199,7 +308,7 @@ document.querySelectorAll(
 )
 
 .forEach(
-(anchor)=>{
+anchor=>{
 
 
 anchor.addEventListener(
@@ -207,26 +316,38 @@ anchor.addEventListener(
 function(e){
 
 
+const target =
+document.querySelector(
+this.getAttribute("href")
+);
+
+
+
+if(target){
+
+
 e.preventDefault();
 
 
 
-document.querySelector(
-this.getAttribute("href")
-)
+target.scrollIntoView({
 
-.scrollIntoView({
+behavior:"smooth",
 
-behavior:"smooth"
+block:"start"
 
 });
 
 
+}
+
+
 
 });
 
 
 });
+
 
 
 
@@ -240,7 +361,6 @@ behavior:"smooth"
 // =====================================
 
 
-
 const images =
 document.querySelectorAll(
 "img"
@@ -249,7 +369,21 @@ document.querySelectorAll(
 
 
 images.forEach(
-(img)=>{
+img=>{
+
+
+if(img.complete){
+
+
+img.classList.add(
+"loaded"
+);
+
+
+}
+
+
+else{
 
 
 img.addEventListener(
@@ -263,6 +397,115 @@ img.classList.add(
 
 
 });
+
+
+}
+
+
+
+});
+
+
+
+
+
+
+
+
+
+// =====================================
+// CONTACT FORM VALIDATION
+// =====================================
+
+
+const contactForm =
+document.querySelector(
+".contact-form form"
+);
+
+
+
+if(contactForm){
+
+
+contactForm.addEventListener(
+"submit",
+(e)=>{
+
+
+const inputs =
+contactForm.querySelectorAll(
+"input, textarea"
+);
+
+
+
+let valid=true;
+
+
+
+inputs.forEach(
+input=>{
+
+
+if(
+input.hasAttribute("required")
+&&
+input.value.trim()===""
+){
+
+
+valid=false;
+
+
+}
+
+
+});
+
+
+
+
+if(!valid){
+
+
+e.preventDefault();
+
+
+alert(
+"必須項目を入力してください。"
+);
+
+
+}
+
+
+
+});
+
+
+}
+
+
+
+
+
+
+
+
+// =====================================
+// PAGE LOAD ANIMATION
+// =====================================
+
+
+window.addEventListener(
+"load",
+()=>{
+
+
+document.body.classList.add(
+"loaded"
+);
 
 
 });

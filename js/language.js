@@ -5,7 +5,9 @@
 
 
 const languageSwitcher =
-document.getElementById("languageSwitcher");
+document.getElementById(
+    "languageSwitcher"
+);
 
 
 
@@ -42,13 +44,13 @@ heroButton:
 
 
 
-
 aboutTitle:
 "会社概要",
 
 
 aboutText:
 "Krystal International は、日本でレストラン事業、食品販売事業を展開しています。",
+
 
 
 
@@ -60,11 +62,14 @@ businessTitle:
 asha:
 "ASHA Minamiurawa Ten",
 
+
 milan:
 "Milan Restaurant",
 
+
 mart:
 "Krystal Mini Mart",
+
 
 
 
@@ -79,16 +84,33 @@ newsText:
 
 
 
+
 contactTitle:
 "お問い合わせ",
 
 
 contactText:
-"お気軽にお問い合わせください"
+"お気軽にお問い合わせください",
+
+
+
+contactButton:
+"送信する",
+
+
+
+
+company:
+"会社情報",
+
+
+access:
+"アクセス"
 
 
 
 },
+
 
 
 
@@ -129,7 +151,6 @@ aboutTitle:
 "About Company",
 
 
-
 aboutText:
 "Krystal International operates restaurant businesses and food retail services in Japan.",
 
@@ -160,7 +181,6 @@ newsTitle:
 "Latest News",
 
 
-
 newsText:
 "Krystal International official website has launched.",
 
@@ -172,9 +192,23 @@ contactTitle:
 "Contact Us",
 
 
-
 contactText:
-"Feel free to contact us anytime."
+"Feel free to contact us anytime.",
+
+
+
+contactButton:
+"Send Message",
+
+
+
+
+company:
+"Company Information",
+
+
+access:
+"Access"
 
 
 
@@ -191,6 +225,11 @@ contactText:
 
 
 
+// =====================================
+// CHANGE LANGUAGE FUNCTION
+// =====================================
+
+
 function changeLanguage(lang){
 
 
@@ -200,26 +239,24 @@ translations[lang];
 
 
 
-if(!text) return;
+if(!text)
+return;
 
 
 
-
-
-// Find all translated elements
 
 
 document.querySelectorAll(
 "[data-lang]"
 )
 
-.forEach(element=>{
+.forEach(
+element=>{
+
 
 
 const key =
-element.getAttribute(
-"data-lang"
-);
+element.dataset.lang;
 
 
 
@@ -233,13 +270,32 @@ text[key];
 }
 
 
+
 });
 
 
 
 
 
-// Save language
+
+
+// Change page language attribute
+
+
+document.documentElement.lang =
+lang === "jp"
+?
+"ja"
+:
+"en";
+
+
+
+
+
+
+// Save selected language
+
 
 localStorage.setItem(
 "language",
@@ -257,7 +313,10 @@ lang
 
 
 
-// Language selector
+
+// =====================================
+// LANGUAGE SWITCHER EVENT
+// =====================================
 
 
 if(languageSwitcher){
@@ -284,10 +343,15 @@ languageSwitcher.value
 
 
 
-// Load saved language
+
+
+// =====================================
+// LOAD SAVED LANGUAGE
+// =====================================
 
 
 const savedLanguage =
+
 localStorage.getItem(
 "language"
 )
@@ -296,12 +360,18 @@ localStorage.getItem(
 
 
 
+
+
 if(languageSwitcher){
+
 
 languageSwitcher.value =
 savedLanguage;
 
+
 }
+
+
 
 
 
