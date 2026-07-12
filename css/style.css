@@ -2028,3 +2028,22 @@ font-size:14px;
 }
 
 }
+.contact-form select{
+
+width:100%;
+
+padding:14px;
+
+margin-bottom:20px;
+
+border:1px solid #ddd;
+
+border-radius:8px;
+
+font-size:16px;
+
+background:#fff;
+
+font-family:inherit;
+
+}

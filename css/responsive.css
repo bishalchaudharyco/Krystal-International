@@ -796,3 +796,178 @@ padding:20px;
 
 
 }
+/* =====================================
+   ABOUT PAGE RESPONSIVE
+===================================== */
+
+@media (max-width:992px){
+
+.company table{
+
+display:block;
+
+overflow-x:auto;
+
+white-space:nowrap;
+
+}
+
+.message{
+
+flex-direction:column;
+
+gap:40px;
+
+text-align:center;
+
+}
+
+.message img{
+
+max-width:600px;
+
+margin:auto;
+
+}
+
+}
+
+
+
+@media (max-width:768px){
+
+.company{
+
+padding:60px 20px;
+
+}
+
+.company table{
+
+font-size:15px;
+
+}
+
+.company th,
+.company td{
+
+padding:12px;
+
+}
+
+.message{
+
+padding:60px 20px;
+
+}
+
+.message h2{
+
+font-size:28px;
+
+}
+
+.message p{
+
+font-size:15px;
+
+}
+
+}
+
+
+
+@media (max-width:480px){
+
+.company table{
+
+font-size:14px;
+
+}
+
+.company th,
+.company td{
+
+padding:10px;
+
+}
+
+.message h2{
+
+font-size:24px;
+
+}
+
+.message p{
+
+font-size:14px;
+
+}
+
+}
+
+
+
+/* =====================================
+   BUSINESS PAGE RESPONSIVE
+===================================== */
+
+@media (max-width:768px){
+
+.business-container{
+
+grid-template-columns:1fr;
+
+}
+
+.card{
+
+max-width:380px;
+
+margin:auto;
+
+}
+
+}
+
+
+
+/* =====================================
+   NEWS PAGE RESPONSIVE
+===================================== */
+
+@media (max-width:768px){
+
+.news-box{
+
+padding:20px;
+
+}
+
+}
+
+
+
+/* =====================================
+   MAP RESPONSIVE
+===================================== */
+
+@media (max-width:768px){
+
+.map{
+
+height:320px;
+
+}
+
+}
+
+@media (max-width:480px){
+
+.map{
+
+height:250px;
+
+}
+
+}
